@@ -6,7 +6,7 @@ Coursera University of Toronto iOS App Development with Swift Specialization Cou
 iOS App Development Basics with Professor Parham Aarabi. \
 https://www.coursera.org/learn/swift-programming
 
-#### Course Forum \
+#### Course Forum 
 https://www.coursera.org/learn/ios-app-development-basics/discussions
 
 This is the 2nd course of the series, 3rd repository in Github. \
