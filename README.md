@@ -17,3 +17,9 @@ https://github.com/yeuchi/Swift5ImageProcessor
 
 2. InstaFilter - 2nd course - culmunation of lessons. \
 https://github.com/yeuchi/InstaFilterApp
+
+
+## References
+
+1. Passing Data Between View Controllers using Delegate and Protocol for Beginners iOS - Swift 4 by Astitv Nagpal, July 10, 2018
+https://medium.com/@astitv96/passing-data-between-view-controllers-using-delegate-and-protocol-ios-swift-4-beginners-e32828862d3f
