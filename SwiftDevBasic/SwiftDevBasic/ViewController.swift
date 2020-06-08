@@ -10,32 +10,41 @@ import UIKit
 
 class ViewController: UIViewController, TableDelegateProtocol {
     
+    @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnCompare: UIButton!
     @IBOutlet weak var btnFilter: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var txtSelectedFilter: UILabel!
+    @IBOutlet weak var txtSelectedLevel: UILabel!
+    
     
     var image:UIImage?=nil
     var myRGBA:RGBAImage? = nil
-    
-    /*
-     * Delegate Method
-     * - execute convolution filter
-     */
-    func onSelectedFilter(filterType: KernelType) {
-        self.txtSelectedFilter.text = filterType.rawValue
-        var filterParams = FilterParams()
-        filterParams.kernel = filterType
-        runInstaFilter(params:filterParams)
-    }
-    
+    var params:FilterParams = FilterParams()
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         image = UIImage(named: "sample")
         imageView.image = image
     }
     
+    /*
+     * Delegate Method
+     * - execute convolution filter
+     */
+    func onEditedFilter(filterType: KernelType, level: EffectLevel) {
+        self.txtSelectedFilter.text = filterType.rawValue
+        self.txtSelectedLevel.text = level.rawValue
+        self.params.kernel = filterType
+        self.params.effectLevel = level
+    }
+    
     @IBAction func onClickFilter(_ sender: UIButton) {
+        
+        runInstaFilter(params:self.params)
+    }
+    
+    @IBAction func onClickEdit(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "idTableViewController") as! TableViewController
         vc.delegate = self
         

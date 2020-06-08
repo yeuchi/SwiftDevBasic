@@ -16,15 +16,15 @@ enum KernelType : String {
      case Identity
  }
 
- enum EffectLevel {
-     case small
-     case large
+enum EffectLevel : String {
+     case Small
+     case Large
  }
 
 struct FilterParams {
        
     var kernel:KernelType = KernelType.Identity
-    var effectLevel:EffectLevel = EffectLevel.small
+    var effectLevel:EffectLevel = EffectLevel.Small
        
     private let identity: [[Int]] = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
     private let xSobel_small: [[Int]] = [[0, 0, 0], [0, 1, -1], [0, 0, 0]]
@@ -39,19 +39,19 @@ struct FilterParams {
     func getKernelValues() -> [[Int]] {
         switch(kernel) {
         case KernelType.SobelX:
-            return effectLevel == EffectLevel.small ? xSobel_small : xSobel_large
+            return effectLevel == EffectLevel.Small ? xSobel_small : xSobel_large
             
         case KernelType.SobelY:
-            return effectLevel == EffectLevel.small ? ySobel_small : ySobel_large
+            return effectLevel == EffectLevel.Small ? ySobel_small : ySobel_large
             
         case KernelType.Sharpen:
-            return effectLevel == EffectLevel.small ? sharpen_small : sharpen_large
+            return effectLevel == EffectLevel.Small ? sharpen_small : sharpen_large
             
         case KernelType.Identity:
             return identity
             
         case KernelType.Blur:
-            return effectLevel == EffectLevel.small ? blur_small : blur_large
+            return effectLevel == EffectLevel.Small ? blur_small : blur_large
         }
     }
 }

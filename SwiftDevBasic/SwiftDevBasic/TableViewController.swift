@@ -9,19 +9,23 @@
 import UIKit
 
 protocol TableDelegateProtocol {
-    func onSelectedFilter(filterType: KernelType)
+    func onEditedFilter(filterType: KernelType, level: EffectLevel)
 }
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var btnDone: UIButton!
     var delegate: TableDelegateProtocol? = nil
+    var filterType:KernelType = KernelType.Identity
+    var effectLevel:EffectLevel = EffectLevel.small
+    
     let filters = [KernelType.Identity,
     KernelType.SobelX,
     KernelType.SobelY,
     KernelType.Sharpen,
     KernelType.Blur,]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FilterCell")
@@ -31,14 +35,30 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.delegate = self
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(filters[indexPath.row])
-        
+    override func viewDidLayoutSubviews() {
+    
+    }
+    
+    @IBAction func onChangeSlider(_ sender: UISlider) {
+        if sender.value < 0.5 {
+            self.effectLevel = EffectLevel.small
+        }
+        else {
+            self.effectLevel = EffectLevel.large
+        }
+    }
+    
+    @IBAction func onClickDone(_ sender: UIButton) {
         if self.delegate != nil {
-            let dataToBeSent = filters[indexPath.row]
-            self.delegate?.onSelectedFilter(filterType: dataToBeSent)
+            let dataToBeSent = self.filterType
+            self.delegate?.onEditedFilter(filterType: dataToBeSent, level:self.effectLevel)
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(filters[indexPath.row])
+        filterType = filters[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
