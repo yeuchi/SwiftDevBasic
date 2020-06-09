@@ -30,7 +30,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        image = UIImage(named: "sample")
+        image = UIImage(named: "Identity")
         imageViewSource.image = image
         
         /*
@@ -224,18 +224,6 @@ class ViewController: UIViewController, TableDelegateProtocol {
                 }
             }
         }
-        
-        
-        
-        /*
-        UIView.transition(with: self.imageView,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: {
-                              self.imageView.image = toImage
-                          },
-                          completion: nil)
- */
     }
     
     /*
@@ -248,21 +236,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
     func displayOverlay() {
         
     }
-    
-    
-    
-/*
-    Part 2 Refine the UI
-
-    5. Use images instead of text for the filter buttons.
-
-    · Choose a small generic image that you can use as an icon for the filter buttons.
-
-    · For each filter button, replace the text with a filtered version of that icon so that the user can see what the effect looks like before they select it.
-
-    · You may not be able to fit as many filter buttons on the screen if you use images, that’s ok, just fit as many as you can.
-*/
-    
+  
     /*
      Part 3 Optional Bonus Challenge – UICollectionView
      With the currently implemented UI, the user can select from several filter options. But this interface has a major limitation: What if you want to offer even more filters, but can’t fit the buttons on the screen?

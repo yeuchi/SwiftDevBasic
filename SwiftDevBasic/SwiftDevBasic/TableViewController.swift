@@ -17,11 +17,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var delegate: TableDelegateProtocol? = nil
     
-    let filters = [KernelType.Identity,
-    KernelType.SobelX,
-    KernelType.SobelY,
-    KernelType.Sharpen,
-    KernelType.Blur,]
+    let filters = [ KernelType.Identity,
+                    KernelType.SobelX,
+                    KernelType.SobelY,
+                    KernelType.Sharpen,
+                    KernelType.Blur,]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +51,23 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell", for: indexPath)
         
+        // label
         cell.textLabel?.text = filters[indexPath.row].rawValue
-        
+    
+        /*
+         * Part 2 Refine the UI
+         *
+         *  5. Use images instead of text for the filter buttons.
+         *
+         * Choose a small generic image that you can use as an icon for the filter buttons.
+         *
+         * For each filter button, replace the text with a filtered version of that icon so that the user can see what the effect looks like before they select it.
+         *
+         * You may not be able to fit as many filter buttons on the screen if you use images, that’s ok, just fit as many as you can.
+         */
+        let name = filters[indexPath.row].rawValue
+        let icon = UIImage(named: name)
+        cell.imageView?.image = icon
         return cell
     }
 }
