@@ -18,7 +18,10 @@ https://github.com/yeuchi/Swift5ImageProcessor
 2. InstaFilter - 2nd course - culmunation of lessons. \
 https://github.com/yeuchi/InstaFilterApp
 
-## Project
+## Functionality
+- Filters: select 1 of 5 types 3x3 kernels, identity, sobel-x derivative, sobel-y derivative, sharpen or blur.
+- Edit: effect level of above filters: small or large.
+- Compare: cross-fade toggle between original and filtered image.
 
 <img width="220" alt="default" src="https://user-images.githubusercontent.com/1282659/84167020-4d9abb80-aa3b-11ea-9a48-11a581e61294.png"> <img width="220" alt="filter" src="https://user-images.githubusercontent.com/1282659/84167025-5095ac00-aa3b-11ea-8031-4c263888cdcc.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84167034-53909c80-aa3b-11ea-8dca-afc0a0eac22a.png"> <img width="220" alt="sharpen" src="https://user-images.githubusercontent.com/1282659/84167041-568b8d00-aa3b-11ea-9f5b-c70e41c9cc27.png">
 
