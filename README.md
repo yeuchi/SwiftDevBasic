@@ -20,7 +20,7 @@ https://github.com/yeuchi/InstaFilterApp
 
 ## Project
 
-<img width="220" alt="Screen Shot 2020-06-08 at 4 16 11 PM" src="https://user-images.githubusercontent.com/1282659/84081408-84bd8e00-a9a3-11ea-87c9-9d9a189238c4.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84081413-86875180-a9a3-11ea-9bf6-220c28e77c88.png">
+<img width="220" alt="default" src="https://user-images.githubusercontent.com/1282659/84167020-4d9abb80-aa3b-11ea-9a48-11a581e61294.png"> <img width="220" alt="filter" src="https://user-images.githubusercontent.com/1282659/84167025-5095ac00-aa3b-11ea-8031-4c263888cdcc.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84167034-53909c80-aa3b-11ea-8dca-afc0a0eac22a.png"> <img width="220" alt="sharpen" src="https://user-images.githubusercontent.com/1282659/84167041-568b8d00-aa3b-11ea-9f5b-c70e41c9cc27.png">
 
 ## References
 
