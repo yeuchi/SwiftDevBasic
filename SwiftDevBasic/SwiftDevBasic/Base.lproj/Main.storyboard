@@ -70,6 +70,13 @@
                                         <rect key="frame" x="8" y="0.0" width="328" height="330"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Original" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-oP-F3z">
+                                        <rect key="frame" x="151" y="18" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -129,6 +136,7 @@
                         <outlet property="imageContainer" destination="rPb-nJ-n76" id="TAR-Ji-84Y"/>
                         <outlet property="imageViewFiltered" destination="c7k-Ah-u37" id="WE1-Xy-3jy"/>
                         <outlet property="imageViewSource" destination="r92-N5-oae" id="Flp-Nd-TN6"/>
+                        <outlet property="txtOriginal" destination="SCs-oP-F3z" id="JOd-Z0-8Ee"/>
                         <outlet property="txtSelectedFilter" destination="K5l-hl-yOJ" id="boY-pG-Sx5"/>
                         <outlet property="txtSelectedLevel" destination="t83-uW-1o7" id="k0d-0k-FvJ"/>
                         <outlet property="viewMain" destination="8bC-Xf-vdC" id="ztp-Hv-Xh5"/>

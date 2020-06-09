@@ -22,6 +22,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
     @IBOutlet weak var txtSelectedFilter: UILabel!
     @IBOutlet weak var txtSelectedLevel: UILabel!
     @IBOutlet var effectView: UIView!
+    @IBOutlet weak var txtOriginal: UILabel!
     
     var image:UIImage?=nil
     var myRGBA:RGBAImage? = nil
@@ -192,6 +193,11 @@ class ViewController: UIViewController, TableDelegateProtocol {
     
     /*
      * Part 2
+     * 3. Make it more explicit that the user is looking at the original image.
+     *
+     * Add a small overlay view on top of the image view with the text “Original”.
+     * This should only be visible when the user is looking at the original image.
+     *
      * 4. Cross-fade images when a user selects a new filter or uses the compare function.
      *
      * A smoother transition between images gives the app a more refined feel.
@@ -201,56 +207,30 @@ class ViewController: UIViewController, TableDelegateProtocol {
      * and you can animate the alpha of the top view to show or hide the bottom view.
      */
     func changeImageState() {
+        var sourceAlpha:CGFloat = 1.0
+        var filteredAlpha:CGFloat = 0.0
+        
         //var toImage = self.image
         if(btnCompare.isEnabled) {
             if(self.state == ViewState.Filtered) {
                // self.imageViewSource.image = self.image
                 self.state = ViewState.Source
-                
-                UIView.animate(withDuration: 1.5) {
-                    self.imageViewFiltered.alpha = 0.0
-                    self.imageViewSource.alpha = 1.0
-                }
-                
-                displayOverlay()
             }
             else {
               //  self.imageView.image = self.convolvedImage
                 self.state = ViewState.Filtered
                 
-                UIView.animate(withDuration: 1.5) {
-                    self.imageViewFiltered.alpha = 1.0
-                    self.imageViewSource.alpha = 0.0
-                }
+                sourceAlpha = 0.0
+                filteredAlpha = 1.0
+            }
+            
+            UIView.animate(withDuration: 1.5) {
+                self.imageViewFiltered.alpha = filteredAlpha
+                self.imageViewSource.alpha = sourceAlpha
+                self.txtOriginal.alpha = sourceAlpha
             }
         }
     }
-    
-    /*
-     * Part 2
-     * 3. Make it more explicit that the user is looking at the original image.
-     *
-     * Add a small overlay view on top of the image view with the text “Original”.
-     * This should only be visible when the user is looking at the original image.
-     */
-    func displayOverlay() {
-        
-    }
-  
-    /*
-     Part 3 Optional Bonus Challenge – UICollectionView
-     With the currently implemented UI, the user can select from several filter options. But this interface has a major limitation: What if you want to offer even more filters, but can’t fit the buttons on the screen?
-
-     It would be nice if we could have a scrolling list of filter buttons. This could fit into our existing layout if the list scrolls horizontally. We covered the UITableView API in this course, but UITableView cells scroll vertically and each cell takes up the entire width of the screen. There is a more advanced API called UICollectionView. A collection view is a more flexible widget than a table view, but it has a very similar API. The biggest addition is that the collection view API allows you to create custom layouts of cells in two dimensions. The bonus challenge is to refactor the filter button list from a stack view, into a horizontally scrolling collection view.
-
-     · For an introduction to the UICollectionView API check out Apple’s video here: https://developer.apple.com/videos/play/wwdc2012-205/ (Note: This video was produced before Swift was released, so the examples are in Objective-C.) · Refer to the Collection View Programming Guide for iOS for a more in-depth introduction: https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Introduction/Introduction.html
-
-     ·Take a look at the CollectionView-Simple sample project (Objective-C) on Apple’s iOS documentation site. Keep in mind that this implements a vertically scrolling list with two cells per row, whereas you want a horizontally scrolling list with one cell per column.https://developer.apple.com/library/prerelease/ios/samplecode/CollectionView-Simple/Introduction/Intro.html
-
-     The Collection View API requires you to supply a layout object to manage the layout of cells in the collection view. Apple supplies a built-in class named UICollectionViewFlowLayout. Use this instead of creating your own custom layout class.
-
-
-     */
 
     func runInstaFilter(params:FilterParams) {
         
