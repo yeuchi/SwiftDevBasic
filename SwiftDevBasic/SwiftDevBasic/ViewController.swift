@@ -30,6 +30,17 @@ class ViewController: UIViewController, TableDelegateProtocol {
         image = UIImage(named: "sample")
         imageView.image = image
         
+        /*
+         * imageView touch event
+         */
+        var tap = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.onTouchImage))
+        tap.minimumPressDuration = 0
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        
+        /*
+         * effect level pop-up
+         */
         self.effectView.backgroundColor = UIColor.lightGray
         self.effectView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -40,6 +51,31 @@ class ViewController: UIViewController, TableDelegateProtocol {
          * and the compare button isn’t useful. Disable the button when its function is not needed.
          */
         btnCompare.isEnabled = false
+    }
+    
+    /*
+     * Part 2
+     * 2. Make it easier to compare the original and filtered images.
+     *
+     * When the user touches the image, toggle between the filtered, and original images temporarily.
+     *
+     * When the user lifts their finger, toggle back.
+     */
+    @objc func onTouchImage(gesture: UITapGestureRecognizer) {
+        
+        switch (gesture.state) {
+        case UIGestureRecognizerState.began:
+            changeImageState()
+        
+        case UIGestureRecognizerState.ended:
+            changeImageState()
+         
+        //case UIGestureRecognizerState.changed:
+        //case UIGestureRecognizerState.cancelled:
+        //
+        default:
+            return
+        }
     }
     
     /*
@@ -137,24 +173,27 @@ class ViewController: UIViewController, TableDelegateProtocol {
      * - this button is not visible until user selects filter.
      */
     @IBAction func onClickCompare(_ sender: UIButton) {
-        if(self.state == ViewState.Filtered) {
-            self.imageView.image = self.image
-            self.state = ViewState.Source
-        }
-        else {
-            self.imageView.image = self.convolvedImage
-            self.state = ViewState.Filtered
+        changeImageState()
+    }
+    
+    func changeImageState() {
+        if(btnCompare.isEnabled) {
+            if(self.state == ViewState.Filtered) {
+                self.imageView.image = self.image
+                self.state = ViewState.Source
+            }
+            else {
+                self.imageView.image = self.convolvedImage
+                self.state = ViewState.Filtered
+            }
         }
     }
+    
+    
     
 /*
     Part 2 Refine the UI
 
-    2. Make it easier to compare the original and filtered images.
-
-    · When the user touches the image, toggle between the filtered, and original images temporarily.
-
-    · When the user lifts their finger, toggle back.
 
     3. Make it more explicit that the user is looking at the original image.
 
