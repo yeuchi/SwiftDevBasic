@@ -14,13 +14,16 @@ class ViewController: UIViewController, TableDelegateProtocol {
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnCompare: UIButton!
     @IBOutlet weak var btnFilter: UIButton!
-    @IBOutlet weak var imageView: UIImageView!
+
+    @IBOutlet weak var imageContainer: UIView!
+    
+    @IBOutlet weak var imageViewFiltered: UIImageView!
+    @IBOutlet weak var imageViewSource: UIImageView!
     @IBOutlet weak var txtSelectedFilter: UILabel!
     @IBOutlet weak var txtSelectedLevel: UILabel!
     @IBOutlet var effectView: UIView!
     
     var image:UIImage?=nil
-    var convolvedImage:UIImage?=nil
     var myRGBA:RGBAImage? = nil
     var params:FilterParams = FilterParams()
     var state:ViewState = ViewState.Source
@@ -28,15 +31,17 @@ class ViewController: UIViewController, TableDelegateProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         image = UIImage(named: "sample")
-        imageView.image = image
+        imageViewSource.image = image
         
         /*
          * imageView touch event
          */
         var tap = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.onTouchImage))
         tap.minimumPressDuration = 0
-        imageView.addGestureRecognizer(tap)
-        imageView.isUserInteractionEnabled = true
+        imageViewSource.addGestureRecognizer(tap)
+        imageViewSource.isUserInteractionEnabled = true
+        
+        self.imageViewFiltered.alpha = 0.0
         
         /*
          * effect level pop-up
@@ -100,8 +105,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
     func onSelectedFilter(filterType: KernelType) {
         self.txtSelectedFilter.text = filterType.rawValue
         self.params.kernel = filterType
-        runInstaFilter(params: self.params)
-        self.state = ViewState.Filtered
+        applyFilter()
     }
        
     @IBAction func onEditLevel(_ sender: UISlider) {
@@ -111,6 +115,16 @@ class ViewController: UIViewController, TableDelegateProtocol {
         else {
             self.params.effectLevel = EffectLevel.Large
         }
+        
+        self.txtSelectedLevel.text = self.params.effectLevel.rawValue
+        applyFilter()
+    }
+    
+    func applyFilter() {
+        runInstaFilter(params: self.params)
+        self.state = ViewState.Filtered
+        self.imageViewSource.alpha = 0.0
+        self.imageViewFiltered.alpha = 1.0
     }
        
     @IBAction func onClickSelected(_ sender: UIButton) {
@@ -135,7 +149,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
     func showEffectLevel() {
         self.viewMain.addSubview(self.effectView)
         
-        let topAnchor = effectView.topAnchor.constraint(equalTo: imageView.topAnchor)
+        let topAnchor = effectView.topAnchor.constraint(equalTo: imageContainer.topAnchor)
          
          let leftConstraint = effectView.leftAnchor.constraint(equalTo: viewMain.leftAnchor)
          
@@ -176,34 +190,69 @@ class ViewController: UIViewController, TableDelegateProtocol {
         changeImageState()
     }
     
+    /*
+     * Part 2
+     * 4. Cross-fade images when a user selects a new filter or uses the compare function.
+     *
+     * A smoother transition between images gives the app a more refined feel.
+     *
+     * During the cross-fade you will need to display two images at once.
+     * You’ll need to add a second UIImageView on top of the first one,
+     * and you can animate the alpha of the top view to show or hide the bottom view.
+     */
     func changeImageState() {
+        //var toImage = self.image
         if(btnCompare.isEnabled) {
             if(self.state == ViewState.Filtered) {
-                self.imageView.image = self.image
+               // self.imageViewSource.image = self.image
                 self.state = ViewState.Source
+                
+                UIView.animate(withDuration: 1.5) {
+                    self.imageViewFiltered.alpha = 0.0
+                    self.imageViewSource.alpha = 1.0
+                }
+                
+                displayOverlay()
             }
             else {
-                self.imageView.image = self.convolvedImage
+              //  self.imageView.image = self.convolvedImage
                 self.state = ViewState.Filtered
+                
+                UIView.animate(withDuration: 1.5) {
+                    self.imageViewFiltered.alpha = 1.0
+                    self.imageViewSource.alpha = 0.0
+                }
             }
         }
+        
+        
+        
+        /*
+        UIView.transition(with: self.imageView,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              self.imageView.image = toImage
+                          },
+                          completion: nil)
+ */
+    }
+    
+    /*
+     * Part 2
+     * 3. Make it more explicit that the user is looking at the original image.
+     *
+     * Add a small overlay view on top of the image view with the text “Original”.
+     * This should only be visible when the user is looking at the original image.
+     */
+    func displayOverlay() {
+        
     }
     
     
     
 /*
     Part 2 Refine the UI
-
-
-    3. Make it more explicit that the user is looking at the original image.
-
-    · Add a small overlay view on top of the image view with the text “Original”. This should only be visible when the user is looking at the original image.
-
-    4. Cross-fade images when a user selects a new filter or uses the compare function.
-
-    · A smoother transition between images gives the app a more refined feel.
-
-    · During the cross-fade you will need to display two images at once. You’ll need to add a second UIImageView on top of the first one, and you can animate the alpha of the top view to show or hide the bottom view.
 
     5. Use images instead of text for the filter buttons.
 
@@ -293,8 +342,7 @@ class ViewController: UIViewController, TableDelegateProtocol {
                     self.myRGBA!.pixels[ii].blue = UInt8(max(0, min(255, sumBlue/denominator)))
                 }
             }
-            self.convolvedImage = self.myRGBA!.toUIImage()
-            self.imageView.image = self.convolvedImage
+            self.imageViewFiltered.image = self.myRGBA!.toUIImage()
         }
     }
     
