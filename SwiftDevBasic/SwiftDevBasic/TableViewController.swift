@@ -9,16 +9,13 @@
 import UIKit
 
 protocol TableDelegateProtocol {
-    func onEditedFilter(filterType: KernelType, level: EffectLevel)
+    func onSelectedFilter(filterType: KernelType)
 }
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var btnDone: UIButton!
     var delegate: TableDelegateProtocol? = nil
-    var filterType:KernelType = KernelType.Identity
-    var effectLevel:EffectLevel = EffectLevel.small
     
     let filters = [KernelType.Identity,
     KernelType.SobelX,
@@ -35,30 +32,14 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.delegate = self
     }
     
-    override func viewDidLayoutSubviews() {
-    
-    }
-    
-    @IBAction func onChangeSlider(_ sender: UISlider) {
-        if sender.value < 0.5 {
-            self.effectLevel = EffectLevel.small
-        }
-        else {
-            self.effectLevel = EffectLevel.large
-        }
-    }
-    
-    @IBAction func onClickDone(_ sender: UIButton) {
-        if self.delegate != nil {
-            let dataToBeSent = self.filterType
-            self.delegate?.onEditedFilter(filterType: dataToBeSent, level:self.effectLevel)
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(filters[indexPath.row])
-        filterType = filters[indexPath.row]
+        
+        if self.delegate != nil {
+            let dataToBeSent = filters[indexPath.row]
+            self.delegate?.onSelectedFilter(filterType: dataToBeSent)
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

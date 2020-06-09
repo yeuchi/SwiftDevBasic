@@ -98,12 +98,44 @@
                     <connections>
                         <outlet property="btnCompare" destination="LZ6-7n-b13" id="aeR-Wh-shb"/>
                         <outlet property="btnFilter" destination="BPZ-W2-Qoz" id="uh7-ck-n8s"/>
+                        <outlet property="effectView" destination="rkP-GT-2LX" id="qo0-4m-xD0"/>
                         <outlet property="imageView" destination="A5q-NO-bhy" id="FqK-b5-19X"/>
                         <outlet property="txtSelectedFilter" destination="K5l-hl-yOJ" id="boY-pG-Sx5"/>
                         <outlet property="txtSelectedLevel" destination="t83-uW-1o7" id="k0d-0k-FvJ"/>
+                        <outlet property="viewMain" destination="8bC-Xf-vdC" id="ztp-Hv-Xh5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="rkP-GT-2LX">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Effect Level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-sc-KJ0">
+                            <rect key="frame" x="16" y="23" width="95" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="RCT-mp-4OQ">
+                            <rect key="frame" x="124" y="19" width="118" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="onEditLevel:" destination="BYZ-38-t0r" eventType="valueChanged" id="IaE-Ce-EJ3"/>
+                            </connections>
+                        </slider>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag8-k3-lMf">
+                            <rect key="frame" x="102" y="78" width="37" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Done"/>
+                            <connections>
+                                <action selector="onClickSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BM5-x5-tbn"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="safeArea" id="cGp-25-And"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
         </scene>
@@ -146,34 +178,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Effect Level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hq-h2-q49">
-                                <rect key="frame" x="38" y="387" width="95" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nqg-fg-dAi">
-                                <rect key="frame" x="243" y="383" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="onChangeSlider:" destination="BFM-Ka-exr" eventType="valueChanged" id="LnE-JM-t4c"/>
-                                </connections>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehN-s4-Whp">
-                                <rect key="frame" x="176" y="448" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
-                                <connections>
-                                    <action selector="onClickDone:" destination="BFM-Ka-exr" eventType="touchUpInside" id="o9v-s4-N2b"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="IUT-j3-nSm"/>
                     </view>
                     <connections>
-                        <outlet property="btnDone" destination="ehN-s4-Whp" id="Jez-Rf-Vgy"/>
                         <outlet property="tableView" destination="gg1-9c-2mb" id="qea-ob-qtt"/>
                     </connections>
                 </viewController>

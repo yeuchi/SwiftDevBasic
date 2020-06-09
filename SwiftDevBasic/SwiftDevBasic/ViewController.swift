@@ -10,64 +10,145 @@ import UIKit
 
 class ViewController: UIViewController, TableDelegateProtocol {
     
+    @IBOutlet var viewMain: UIView!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnCompare: UIButton!
     @IBOutlet weak var btnFilter: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var txtSelectedFilter: UILabel!
     @IBOutlet weak var txtSelectedLevel: UILabel!
-    
+    @IBOutlet var effectView: UIView!
     
     var image:UIImage?=nil
+    var convolvedImage:UIImage?=nil
     var myRGBA:RGBAImage? = nil
     var params:FilterParams = FilterParams()
+    var state:ViewState = ViewState.Source
  
     override func viewDidLoad() {
         super.viewDidLoad()
         image = UIImage(named: "sample")
         imageView.image = image
+        
+        self.effectView.backgroundColor = UIColor.lightGray
+        self.effectView.translatesAutoresizingMaskIntoConstraints = false
+        
+        /*
+         * 1. Disable the compare button when a filter hasn’t been selected.
+         *
+         * If the user hasn’t selected a filter yet, then the image hasn’t changed,
+         * and the compare button isn’t useful. Disable the button when its function is not needed.
+         */
+        btnCompare.isEnabled = false
+    }
+    
+    /*
+     * Part 1
+     *
+     * 1. When a user taps a filter button, the image view should update with the filtered image.
+     * Use the RGBAImage class from the course 1 project to get access to the pixels contained in a UIImage object.
+     * Employ your filter code from course 1 to filter the selected image.
+     */
+    @IBAction func onClickFilter(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "idTableViewController") as! TableViewController
+        vc.delegate = self
+        
+        self.present(vc, animated: true, completion: nil)
+        btnCompare.isEnabled = true
     }
     
     /*
      * Delegate Method
      * - execute convolution filter
      */
-    func onEditedFilter(filterType: KernelType, level: EffectLevel) {
+    func onSelectedFilter(filterType: KernelType) {
         self.txtSelectedFilter.text = filterType.rawValue
-        self.txtSelectedLevel.text = level.rawValue
         self.params.kernel = filterType
-        self.params.effectLevel = level
+        runInstaFilter(params: self.params)
+        self.state = ViewState.Filtered
+    }
+       
+    @IBAction func onEditLevel(_ sender: UISlider) {
+        if sender.value < 0.5 {
+            self.params.effectLevel = EffectLevel.Small
+        }
+        else {
+            self.params.effectLevel = EffectLevel.Large
+        }
+    }
+       
+    @IBAction func onClickSelected(_ sender: UIButton) {
+        hideEffectLevel()
     }
     
-    @IBAction func onClickFilter(_ sender: UIButton) {
-        
-        runInstaFilter(params:self.params)
-    }
-    
+    /*
+     * Part 2 Refine the UI
+     * 6. Add an Edit button.
+     *
+     *  ● Add an edit button next to the Filter button in the bottom toolbar.
+     *    The function of this button is to allow the user to adjust the intensity of the currently applied filter (this button should be disabled until a filter has been selected.)
+     *
+     *  ● When the user taps the edit button, hide the filter option list (if visible) and show a UISlider widget instead.
+     *
+     *  ● After the user adjusts the slider, the image should be updated with the new filter intensity.
+     */
     @IBAction func onClickEdit(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "idTableViewController") as! TableViewController
-        vc.delegate = self
-        
-        self.present(vc, animated: true, completion: nil)
+        showEffectLevel()
     }
     
+    func showEffectLevel() {
+        self.viewMain.addSubview(self.effectView)
+        
+        let topAnchor = effectView.topAnchor.constraint(equalTo: imageView.topAnchor)
+         
+         let leftConstraint = effectView.leftAnchor.constraint(equalTo: viewMain.leftAnchor)
+         
+         let rightConstraint = effectView.rightAnchor.constraint(equalTo: viewMain.rightAnchor)
+         
+         let heightConstraint = effectView.heightAnchor.constraint(lessThanOrEqualToConstant: 130)
+         
+         NSLayoutConstraint.activate([leftConstraint, rightConstraint, topAnchor, heightConstraint])
+        
+        self.viewMain.layoutIfNeeded()
+        
+        effectView.alpha = 0
+        UIView.animate(withDuration: 1) {
+            self.effectView.alpha = 1
+        }
+    }
+    
+    func hideEffectLevel() {
+        UIView.animate(withDuration: 1, animations: {
+            self.effectView.alpha = 0
+        }) {completed in
+            if completed == true {
+                self.effectView.removeFromSuperview()
+            }
+        }
+    }
+    
+    /*
+     * Part 1 Implement Filter and Compare functions
+     *
+     * 2. When a user taps the compare button, the image view should show the original image.
+     * When they tap the button again, show the filtered image.
+     *
+     * Part 2
+     * - this button is not visible until user selects filter.
+     */
     @IBAction func onClickCompare(_ sender: UIButton) {
+        if(self.state == ViewState.Filtered) {
+            self.imageView.image = self.image
+            self.state = ViewState.Source
+        }
+        else {
+            self.imageView.image = self.convolvedImage
+            self.state = ViewState.Filtered
+        }
     }
     
 /*
-    Part 1 Implement Filter and Compare functions
-    1. When a user taps a filter button, the image view should update with the filtered image.
-
-    · Use the RGBAImage class from the course 1 project to get access to the pixels contained in a UIImage object.
-
-    · Employ your filter code from course 1 to filter the selected image.
-
-    2. When a user taps the compare button, the image view should show the original image. When they tap the button again, show the filtered image.
-
     Part 2 Refine the UI
-    1. Disable the compare button when a filter hasn’t been selected.
-
-    · If the user hasn’t selected a filter yet, then the image hasn’t changed, and the compare button isn’t useful. Disable the button when its function is not needed.
 
     2. Make it easier to compare the original and filtered images.
 
@@ -92,15 +173,6 @@ class ViewController: UIViewController, TableDelegateProtocol {
     · For each filter button, replace the text with a filtered version of that icon so that the user can see what the effect looks like before they select it.
 
     · You may not be able to fit as many filter buttons on the screen if you use images, that’s ok, just fit as many as you can.
-
-    6. Add an Edit button.
-
-    ● Add an edit button next to the Filter button in the bottom toolbar. The function of this button is to allow the user to adjust the intensity of the currently applied filter (this button should be disabled until a filter has been selected.)
-
-    ● When the user taps the edit button, hide the filter option list (if visible) and show a UISlider widget instead.
-
-    ● After the user adjusts the slider, the image should be updated with the new filter intensity.
-
 */
     
     /*
@@ -117,7 +189,6 @@ class ViewController: UIViewController, TableDelegateProtocol {
 
 
      */
-
 
     func runInstaFilter(params:FilterParams) {
         
@@ -183,9 +254,8 @@ class ViewController: UIViewController, TableDelegateProtocol {
                     self.myRGBA!.pixels[ii].blue = UInt8(max(0, min(255, sumBlue/denominator)))
                 }
             }
-            let convolvedImage = self.myRGBA!.toUIImage()
-            imageView.image = convolvedImage
-            //newImage2
+            self.convolvedImage = self.myRGBA!.toUIImage()
+            self.imageView.image = self.convolvedImage
         }
     }
     

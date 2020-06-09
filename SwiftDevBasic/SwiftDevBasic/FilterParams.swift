@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum ViewState : String {
+    case Source
+    case Filtered
+}
+
 enum KernelType : String {
      case SobelX
      case SobelY
