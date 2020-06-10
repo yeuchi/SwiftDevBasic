@@ -19,6 +19,7 @@ https://github.com/yeuchi/Swift5ImageProcessor
 https://github.com/yeuchi/InstaFilterApp
 
 ## Course Lesson Functionality
+- Default: load given image, Compare button disabled until filter is applied once.
 - New: Camera & Album upload image.  Code given by course as starter.
 
 <img width="220" alt="action_Sheet" src="https://user-images.githubusercontent.com/1282659/84277254-e04d6000-aaf8-11ea-8f99-01b7c01ed11f.png"> <img width="220" alt="all_photos" src="https://user-images.githubusercontent.com/1282659/84277265-e3485080-aaf8-11ea-9790-f899e25ca5bd.png"> <img width="220" alt="choose" src="https://user-images.githubusercontent.com/1282659/84277272-e5aaaa80-aaf8-11ea-93cd-cddd5cbe0870.png"> <img width="220" alt="selected" src="https://user-images.githubusercontent.com/1282659/84277280-e93e3180-aaf8-11ea-8456-94fd401a100a.png">
