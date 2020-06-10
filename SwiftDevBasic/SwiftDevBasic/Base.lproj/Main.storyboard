@@ -21,8 +21,15 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2Al-vY-fi0">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8Q-C2-DlX">
+                                                <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="30"/>
+                                                <state key="normal" title="New"/>
+                                                <connections>
+                                                    <action selector="onClickNew:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ihb-71-ueX"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="50" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPZ-W2-Qoz">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                                <rect key="frame" x="93.666666666666686" y="0.0" width="94" height="30"/>
                                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                                 <state key="normal" title="Filter"/>
                                                 <connections>
@@ -30,14 +37,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="50" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-1u-xfM">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="30"/>
+                                                <rect key="frame" x="187.66666666666666" y="0.0" width="93.666666666666657" height="30"/>
                                                 <state key="normal" title="Edit"/>
                                                 <connections>
                                                     <action selector="onClickEdit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cC1-40-kp7"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="50" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZ6-7n-b13">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                                <rect key="frame" x="281.33333333333331" y="0.0" width="93.666666666666686" height="30"/>
                                                 <state key="normal" title="Compare"/>
                                                 <connections>
                                                     <action selector="onClickCompare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DBn-W3-JqE"/>
@@ -220,6 +227,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wait a few minutes... slow process." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfC-ox-LuB">
+                                <rect key="frame" x="54" y="370" width="267" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="IUT-j3-nSm"/>

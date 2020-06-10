@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, TableDelegateProtocol {
+class ViewController: UIViewController, TableDelegateProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var slider: UISlider!
     
     @IBOutlet var viewMain: UIView!
@@ -83,6 +83,52 @@ class ViewController: UIViewController, TableDelegateProtocol {
         default:
             return
         }
+    }
+    
+    @IBAction func onClickNew(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .actionSheet)
+           
+           actionSheet.addAction(UIAlertAction(title:"Camera", style: .default, handler: {action in
+               self.showCamera()
+           }))
+           
+           
+           actionSheet.addAction(UIAlertAction(title:"Album", style: .default, handler: {action in
+               self.showAlbum()
+           }))
+           
+           
+           actionSheet.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: {action in
+               
+           }))
+           
+           self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showCamera() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .camera
+        present(picker, animated: true)
+    }
+    
+    func showAlbum() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        self.image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        imageViewSource.image = self.image
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     /*
