@@ -31,7 +31,7 @@ https://github.com/yeuchi/InstaFilterApp
 - Compare: cross-fade toggle between original and filtered image.
 - Quick Compare: touch image to temporarily toggle image; mouse/finger up will revert view.
 
-<img width="220" alt="original" src="https://user-images.githubusercontent.com/1282659/84190087-f2c58c00-aa5b-11ea-9507-6ed0228a96af.png"> <img width="220" alt="table" src="https://user-images.githubusercontent.com/1282659/84190093-f48f4f80-aa5b-11ea-8895-48f3282c4953.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84167034-53909c80-aa3b-11ea-8dca-afc0a0eac22a.png"> <img width="220" alt="sharpen" src="https://user-images.githubusercontent.com/1282659/84167041-568b8d00-aa3b-11ea-9f5b-c70e41c9cc27.png">
+<img width="220" alt="default" src="https://user-images.githubusercontent.com/1282659/84277524-43d78d80-aaf9-11ea-92d5-ececc4c79256.png"> <img width="220" alt="table" src="https://user-images.githubusercontent.com/1282659/84190093-f48f4f80-aa5b-11ea-8895-48f3282c4953.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84167034-53909c80-aa3b-11ea-8dca-afc0a0eac22a.png"> <img width="220" alt="sharpen" src="https://user-images.githubusercontent.com/1282659/84167041-568b8d00-aa3b-11ea-9f5b-c70e41c9cc27.png">
 
 ## Effect Level
 For Sobel derivative filters, the size of the convolution is actually increased from 1x3 to 3x3. \
