@@ -136,6 +136,7 @@
                         <outlet property="imageContainer" destination="rPb-nJ-n76" id="TAR-Ji-84Y"/>
                         <outlet property="imageViewFiltered" destination="c7k-Ah-u37" id="WE1-Xy-3jy"/>
                         <outlet property="imageViewSource" destination="r92-N5-oae" id="Flp-Nd-TN6"/>
+                        <outlet property="slider" destination="RCT-mp-4OQ" id="yz6-Wj-cFT"/>
                         <outlet property="txtOriginal" destination="SCs-oP-F3z" id="JOd-Z0-8Ee"/>
                         <outlet property="txtSelectedFilter" destination="K5l-hl-yOJ" id="boY-pG-Sx5"/>
                         <outlet property="txtSelectedLevel" destination="t83-uW-1o7" id="k0d-0k-FvJ"/>

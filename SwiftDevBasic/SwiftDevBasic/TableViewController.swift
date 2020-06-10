@@ -17,11 +17,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var delegate: TableDelegateProtocol? = nil
     
-    let filters = [ KernelType.Identity,
+    let filters = [ KernelType.Sharpen,
+                    KernelType.Blur,
                     KernelType.SobelX,
-                    KernelType.SobelY,
-                    KernelType.Sharpen,
-                    KernelType.Blur,]
+                    KernelType.SobelY]
 
     override func viewDidLoad() {
         super.viewDidLoad()

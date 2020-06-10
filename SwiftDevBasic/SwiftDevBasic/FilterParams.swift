@@ -29,7 +29,7 @@ enum EffectLevel : String {
 struct FilterParams {
        
     var kernel:KernelType = KernelType.Identity
-    var effectLevel:EffectLevel = EffectLevel.Small
+    var effectLevel:EffectLevel = EffectLevel.Large
        
     private let identity: [[Int]] = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
     private let xSobel_small: [[Int]] = [[0, 0, 0], [0, 1, -1], [0, 0, 0]]

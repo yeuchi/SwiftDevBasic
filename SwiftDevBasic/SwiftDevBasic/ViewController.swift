@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, TableDelegateProtocol {
+    @IBOutlet weak var slider: UISlider!
     
     @IBOutlet var viewMain: UIView!
     @IBOutlet weak var btnEdit: UIButton!
@@ -144,6 +145,12 @@ class ViewController: UIViewController, TableDelegateProtocol {
      *  ● After the user adjusts the slider, the image should be updated with the new filter intensity.
      */
     @IBAction func onClickEdit(_ sender: UIButton) {
+        if(self.params.effectLevel == EffectLevel.Large) {
+            slider.value = 1.0
+        }
+        else {
+            slider.value = 0.0
+        }
         showEffectLevel()
     }
     
