@@ -19,17 +19,17 @@ https://github.com/yeuchi/Swift5ImageProcessor
 https://github.com/yeuchi/InstaFilterApp
 
 ## Course Lesson Functionality
-- Default: load given image, Compare button disabled until filter is applied once.
-- New: Camera & Album upload image.  Code given by course as starter.
+- Default: load given image, button compare is disabled until filter is applied for the first time.
+- Button New: Camera & Album upload image.  Code given by course as starter.
 
 <img width="220" alt="action_Sheet" src="https://user-images.githubusercontent.com/1282659/84277254-e04d6000-aaf8-11ea-8f99-01b7c01ed11f.png"> <img width="220" alt="all_photos" src="https://user-images.githubusercontent.com/1282659/84277265-e3485080-aaf8-11ea-9790-f899e25ca5bd.png"> <img width="220" alt="choose" src="https://user-images.githubusercontent.com/1282659/84277272-e5aaaa80-aaf8-11ea-93cd-cddd5cbe0870.png"> <img width="220" alt="selected" src="https://user-images.githubusercontent.com/1282659/84277280-e93e3180-aaf8-11ea-8456-94fd401a100a.png">
 
 ## Functionality
 - Upload: default image is available at start.
-- Filters: select 1 of 4 types 3x3 kernels (sobel-x derivative, sobel-y derivative, sharpen or blur).
-- Edit: use slider to select effect level of above filters (small or large).
-- Compare: cross-fade toggle between original and filtered image.
-- Quick Compare: touch image to temporarily toggle image; mouse/finger up will revert view.
+- Button Filters: select 1 of 4 types 3x3 kernels (sobel-x derivative, sobel-y derivative, sharpen or blur).
+- Button Edit: use slider to select effect level of above filters (small or large).
+- Button Compare: cross-fade toggle between original and filtered image.
+- Touch image: on-touch-down temporarily toggles image; on-touch-up reverts view.
 
 <img width="220" alt="default" src="https://user-images.githubusercontent.com/1282659/84277524-43d78d80-aaf9-11ea-92d5-ececc4c79256.png"> <img width="220" alt="filter" src="https://user-images.githubusercontent.com/1282659/84277614-5eaa0200-aaf9-11ea-92c7-52421c05e2d2.png"> <img width="220" alt="edit" src="https://user-images.githubusercontent.com/1282659/84167034-53909c80-aa3b-11ea-8dca-afc0a0eac22a.png"> <img width="220" alt="sharpen" src="https://user-images.githubusercontent.com/1282659/84167041-568b8d00-aa3b-11ea-9f5b-c70e41c9cc27.png">
 
