@@ -3,8 +3,8 @@ iOS App Development Basic course project.
 
 ## Course
 Coursera University of Toronto iOS App Development with Swift Specialization Courses: \
-iOS App Development Basics with Professor Parham Aarabi. \
-https://www.coursera.org/learn/swift-programming
+iOS App Development Basics with Professor Parham Aarabi and Jack Wu. \
+https://www.coursera.org/learn/ios-app-development-basics
 
 #### Course Forum 
 https://www.coursera.org/learn/ios-app-development-basics/discussions
